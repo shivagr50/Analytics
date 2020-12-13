@@ -178,3 +178,90 @@ source("env1.R")                    # sourcing back the data to locl environment
 x
 y
 x1
+
+#setting up interfaces with outside R environment.
+# You use a connection which helps communicate with interfaces like a file, gzip,bzip file/url or sql tables and more.
+# for accessing a file you can use file() function.
+#file()=function (description = "", open = "", blocking = TRUE, encoding = getOption("encoding"),raw = FALSE, method = getOption("url.method", "default"))
+con=file("y.R","r")
+x=dget(con)
+x
+con=url("https://archive.ics.uci.edu/ml/datasets.php","r")
+x=readLines(con)
+x
+
+#Subsetting : When you want to select a subset of a R object, you use this concept. Rule of thumbs:
+#  [] returns object of the same class as the orignal class. This can be used to select more than one element.
+#  [[]] used to extract elements of a list or a dataframe. 
+#  Can be used to extract a single element The class of returned obj may not necessarily be same  as that of the orignal.
+#  $ to extract elements of a list or a df by "name" attribute.
+
+# Subsetting matrix
+x=matrix(xnum,nrow=2,ncol=3)
+x
+x[1]
+
+#subsetting dataframes
+x1=data.frame(x)
+x1
+x1[1]
+x1[[1]]
+x1[[1]][1]
+
+# Subsetting vectors
+x0=c(1,2,3,4,5,6,7)
+x0[1]
+x[1:2]
+x[x>3]
+
+# Subsetting lists
+lst=list(a=x,b=x0,c=x1)
+attributes(lst)
+lst$a
+lst['a']
+lst[1]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
