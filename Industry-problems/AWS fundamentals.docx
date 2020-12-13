@@ -1,0 +1,43 @@
+Advantages of Cloud
+	1. No need to buy operate and maintain physical servers.
+	2. More servers were needed in traditional approach due to peak time traffic
+	3. Monitor and maintenance is not required for the servers.
+	4. Less setup cost
+	5. In traditional approach, Troubleshooting problems can be tedious and may conflict with business goals.
+	 
+What is Cloud Computing
+	1. Cloud Computing can be equalled to renting computers in some sense.  This reduces one time setup costs.
+	2. The resources(computing power) now can be scaled according to requirements.
+	3. No worry of the underlying infrastructure.
+	
+What are the factors while choosing cloud service provider?
+	1. Experience in the market and acceptance(AWS ranks best)
+	2. Pricing for SLAs
+	
+Uses of cloud Computing
+	1. Storing Data
+	2. Managing data
+	3. Processing data
+	4. Or all of them
+AWS highlights
+	1. 31 percent global market share, highest in the market.
+	2. AWS's has six times more server capacity than its competitors.
+	3. Flexible pricing - billing by the hour
+What is AWS
+	Secure cloud service platform which offers computing power, database storage, content delivery and other functions to help businesses grow.
+Domains of AWS
+		a. Compute -- like a new PC
+			i. EC2 : like a raw server, can be configured to host any kind of application. Can be resized to serve your needs(hardware wise), can be replicated. Any software can be installed.
+			ii. Lambda:  Advanced EC2, Lambda can only be used to processed your background processes. Works based on triggers. Whenever the trigger goes off, the background process starts and completes.
+			iii. Elastic Beanstalk: Advanced EC2, can only be used to host an application. Don’t need to create/maintain an environment for applications to be hosted. All related installation is taken care of as per a template
+			iv. Elastic load balancer: helps deploy a protocol that distributes the workload on deployed instances.
+			v. Auto scaling: scales up and scales down automatically, based metrics, scale up and down will get triggered. Elastic load balancer along with auto scaling is essential. Basically adds and removes servers based on metrics.
+		b. Migration(snowball)-- used to transfer data to and from aws infrastructure
+		c. Security and identity compliance(IAM)-- used to authenticate users and define user rights
+		d. Storage(S3) -- simple storage space made available, it is a simple file system based storage system
+		e. Networking and content delivery(route53)-- for services like redirect traffic from the URL to servers that are hosting the webapp.
+		f. Messaging domain(SES) -- used to send and receive bulk SMS
+		g. Databases(RDS) -- managing service for databases hosted, can host and manage range of SQL servers like mysql and postgresql
+		h. Management tools(cloud watch) -- monitoring the resources and managing them
+	
+		
