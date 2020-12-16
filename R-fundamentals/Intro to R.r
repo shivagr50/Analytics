@@ -199,7 +199,8 @@ x
 # Subsetting matrix
 x=matrix(xnum,nrow=2,ncol=3)
 x
-x[1]
+x[1,]
+x[,1]
 
 #subsetting dataframes
 x1=data.frame(x)
@@ -220,48 +221,11 @@ attributes(lst)
 lst$a
 lst['a']
 lst[1]
+lst[c("a","b")] #cannot use double bracket subsetting for multiple items
+lst [c(1,3)]
 
+# removing missing values in a vector
+x=c(1,2,3,Nan,5,6,NA)
+x=x[!is.na(x)]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#when working in R, if you perform an arithmetic operation on a vector, these occur on a element by element basis
