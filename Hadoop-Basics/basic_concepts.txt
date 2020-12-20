@@ -1,0 +1,99 @@
+1. there are three basic version of hadoop available out of which hadoop 2 is mosgt stable and popular. Also known as yarn.
+
+
+2. Components of hadoop 1.0:
+    1.Name Node
+    2.Secondary name Node
+    3. job tracker
+    4. task tracker
+    5. data nodes
+
+key terms:
+    1. Commodity hardware : PCs that can be used to make a cluster.
+    2. Cluster: interconnected computers in a network.
+    3. Node: a single instance of a computer in a cluster.
+    4. Distributed system: generally refers to cluster/grid of multiple autonomous computers that communicate through a computer network.
+    5. ASF: Apache software foundation, owner of hadoop right network
+    6. HA: high availablity
+    7. Hot Standby: uninterrupted failover.(systems that fill in incase of a failure)
+    8. Cold Standby: interrupted failover, a reboot is required.
+
+Architecture(master-slave):
+    1. machines in master node: 
+        a. Name node
+        b. Secondary name node
+        c. job tracker
+    2. Slave Nodes:
+        a. data nodes
+
+Hadoop Deployment modes:
+    1. Standalone mode: All services(master and slave nodes) run locally on single machine on single jvm(seldomly used)
+    2. Pseudo distributed mode: All services run on same machine but different jvms(used for development and testing)
+    3. fully distributed mode: Each services is run on a separate hardware(a dedicated server). used in production env.
+
+Roles of all type of nodes:
+    1. Master Node
+        a. Name Node: central file system manager for hdfs which stores info. in form of file table. the data gets stored in the data node only.
+        b. Secondary name node: data backup of the name node. note that is is not a hot standby system. hot standby are intoduced in the second version of hadoop. 
+        c. job tracker: centralised job tracker
+    2. slave node
+        a. data node: nodes where subset of data is stored and processed. All data nodes give a heart beat signal to name node in about three seconds to let the name node know that services are up and running. in case of failure of a data node response, there are steps that a name node has to take to ensure everyting works flawless.
+        b. task tracker: software daemons that keep running on each data nodes that keep track of the procesing and data on data nodes and report it all back to the job tracker residing in the master nodes.
+
+configuration requirement:
+1. Name and Secondary name node have almost same configuartion requirements, they need to be very high on RAM and need to be low on secondary storage(about a TB for production environments.). CPU: not very high processing power is needed, a quad/octa core CPU will do the trick.
+2. job tracker needs to be much more power in terms of computational bandwidth. a 16/32 core CPU with probably 50 gigs of RAM, strorage in order of few terabytes will sufffice.
+3. data nodes need to be veru powerful, typically we have nothing less than 16 cores and generally tends nearly at 128 cores.  RAM-100-200GB per node, 50-100 teradbyte per node.
+
+what is a job in hadoop:
+sequence of commands that need executing as a batch on data in the cluster. The data is stroed in the hdfs file system that uses the master and slave nodes to do so.
+job in hadoop is going to be a jar file, this is since hadoop is built in java language.
+
+Apache hadoop core features:
+    1. hadoop distributed file system.(HDFS)
+    2. Map reduce framework : computation in distributed environment.
+
+how a job gets submitted in a hadoop clster:
+a gateway needs contacting with trigger and job details by the client.
+the gateway system contacts the name node and all the jobs gets executed on the data nodes. Job tracker tracks the execution status of the jobs.
+
+
+how does HDFS work?
+Assumption: file to store is 200 MB and there are 12 data nodes in the cluster
+    1. When you install hadoop, you have to configureinput file size. this is done by admin. generally kept 64 MB or more.
+    2. Split of 64 MB will be made on the 200 MB file and 4 blocks will be made, 3 of 64 MB and one of 8 MB. this is done by the name node.
+    3. An algorithm decides which data node will store which block. details of the storage will be stored in the name node in form of a name table which is also known as a FS image(file system image).
+
+what happens when a data node fails?
+by default, all blocks are replicated three times in the cluster. configration name is replication factor. this means the actual sapace needed to store the file is three times the size of the files.
+this task of assigning a backup block is done by the name node. As we have noted earlier there is  a heartbeat signal to name node. 
+the name node identifies this as a failure and corrouption in the data node. due to this, the actual replication of the blocks residing in the data node failed goes down by one. the name node triggers a alarm to copy the blocks from neighbouring blocks to restore the replication factor as 3 or whatever configured.
+if the data node 10 comes back online, it will randomly delete one of the blocks to restore the replication factor.
+
+replica placement strategy:
+Considertaion:data transfer from one rack to another rack takes more time than copying from one node to another in the same rack.
+the replica placement is rack aware. there is a tradeoff hapening between the reliably and the r/w badwidth.
+hadoop places the first replica on same node as the client.  second on a randomly selected node and the third on a node which sahred the rack with the second node where data is tored.
+
+Role of a secondary name node:
+FS image made on  the name node gets backed up in the secondary name node.
+please node in case of a failure with name node, the entire cluser will be unavailable. secondary name nodes are not hot standby systems.
+The admin needs to copy the fs image to name node and manually restart the system.
+this problem is fixed in hadoop 2 there is hot standby name node.
+
+HDFS is good for:
+large quantities of large files. it is bad for large qty of small files.
+HDFS is a write only file system. it does not allow users to manually intervene and edit the data. the data is esstentially immutable in a sense that edit is not allowed.
+data can be appended and the principle is write once and read many times. similar to snapshot processing we see in ETL tools.
+this fs is optimised for batch/streaming services rather than random reads.
+
+
+
+
+
+
+
+
+
+
+
