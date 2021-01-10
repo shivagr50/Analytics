@@ -1,4 +1,4 @@
-1. there are three basic version of hadoop available out of which hadoop 2 is mosgt stable and popular. Also known as yarn.
+1. there are three basic version of hadoop available out of which hadoop 2 is most stable and popular. Also known as yarn.
 
 
 2. Components of hadoop 1.0:

@@ -1,0 +1,22 @@
+basic syntax:
+
+1. command options argument
+ls      -ltr    <filename>
+
+2. man     to view command documentation man <command name>
+3. uname    system details
+4. history  commands run on the terminal history
+5.pwd       current directory
+6.ls        list of contents in present working directory
+7. echo
+8. touch
+9. CP
+nano
+vi
+cat
+more
+less
+whoami
+su
+su - <username>
+visudo

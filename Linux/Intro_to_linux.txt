@@ -1,0 +1,11 @@
+1. linux is based on minux which is based on unix
+2. unix and minux were liscensed softwares, the inventor needed a solution for personal use, so he developed it and named it linux.
+3. linux is actually a kernel, it gets matched with GNU software that helps with add on softwares that make linux kernel usable.
+4. linux distributions, because they were free, were forked out by many companies/individuals. there are 100+ versions available
+5. varitaions we observe in the linux flavors are because of the OS configurations and softwares. Some distibutions suit home use some srvers and so on
+6. most famous linux distribution by number of installtion is ubuntu which is primilarily used for home applications.
+7. for enterprise level, redhat company offers RHEL versions of linux that have robust support and are widely used by many firms.
+8. red hat also offers some open source distributions like centos which is also quite popular.
+10. bash -- borne again shell is a command interpreter. most linux distributions primarly us this interpretor. but there are other options available as well like ksh,dash,csh etc.
+11. /bin/sh -- this softlink points to bash most of the time, this indicates a default interpreter.
+12. 
